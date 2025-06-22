@@ -205,17 +205,29 @@ class JsonImporter extends BaseImporter {
 			}
 		}
 
-		if (isset($data->twitch)) {
-			try {
-				$twitch = $this->validator->validateTwitchAccount($data->twitch, $schedule->getEvent(), $schedule, true);
+               if (isset($data->twitch)) {
+                       try {
+                               $twitch = $this->validator->validateTwitchAccount($data->twitch, $schedule->getEvent(), $schedule, true);
 
-				$schedule->setTwitch($twitch);
-				$this->log('ok', 'Updated schedule twitch account with "'.$twitch.'"');
-			}
-			catch (\Exception $e) {
-				$this->log('warn', 'Bad twitch account: '.$e->getMessage());
-			}
-		}
+                               $schedule->setTwitch($twitch);
+                               $this->log('ok', 'Updated schedule twitch account with "'.$twitch.'"');
+                       }
+                       catch (\Exception $e) {
+                               $this->log('warn', 'Bad twitch account: '.$e->getMessage());
+                       }
+               }
+
+               if (isset($data->youtube)) {
+                       try {
+                               $youtube = $this->validator->validateYoutubeURL($data->youtube, $schedule->getEvent(), $schedule, true);
+
+                               $schedule->setYoutube($youtube);
+                               $this->log('ok', 'Updated schedule youtube link with "'.$youtube.'"');
+                       }
+                       catch (\Exception $e) {
+                               $this->log('warn', 'Bad youtube url: '.$e->getMessage());
+                       }
+               }
 
 		if (isset($data->twitter)) {
 			try {

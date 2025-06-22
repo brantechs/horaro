@@ -63,10 +63,11 @@ class EventController extends BaseController {
 			->setOwner($user)
 			->setName($result['name']['filtered'])
 			->setSlug($result['slug']['filtered'])
-			->setWebsite($result['website']['filtered'])
-			->setTwitter($result['twitter']['filtered'])
-			->setTwitch($result['twitch']['filtered'])
-			->setTheme($result['theme']['filtered'])
+                        ->setWebsite($result['website']['filtered'])
+                        ->setTwitter($result['twitter']['filtered'])
+                        ->setTwitch($result['twitch']['filtered'])
+                       ->setYoutube($result['youtube']['filtered'])
+                        ->setTheme($result['theme']['filtered'])
 			->setSecret($result['secret']['filtered'])
 			->setMaxSchedules($this->app['config']['max_schedules'])
 		;
@@ -110,10 +111,11 @@ class EventController extends BaseController {
 		$event
 			->setName($result['name']['filtered'])
 			->setSlug($result['slug']['filtered'])
-			->setWebsite($result['website']['filtered'])
-			->setTwitter($result['twitter']['filtered'])
-			->setTwitch($result['twitch']['filtered'])
-			->setTheme($result['theme']['filtered'])
+                        ->setWebsite($result['website']['filtered'])
+                        ->setTwitter($result['twitter']['filtered'])
+                        ->setTwitch($result['twitch']['filtered'])
+                       ->setYoutube($result['youtube']['filtered'])
+                        ->setTheme($result['theme']['filtered'])
 			->setSecret($result['secret']['filtered'])
 		;
 

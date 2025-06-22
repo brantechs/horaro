@@ -44,7 +44,12 @@ class Event {
 	/**
 	 * @var string
 	 */
-	private $twitch;
+        private $twitch;
+
+       /**
+        * @var string
+        */
+       private $youtube;
 
 	/**
 	 * @var string
@@ -229,20 +234,41 @@ class Event {
 	 * @param string $twitch
 	 * @return Event
 	 */
-	public function setTwitch($twitch) {
-		$this->twitch = $twitch;
+        public function setTwitch($twitch) {
+                $this->twitch = $twitch;
 
-		return $this;
-	}
+                return $this;
+        }
+
+       /**
+        * Set youtube
+        *
+        * @param string $youtube
+        * @return Event
+        */
+       public function setYoutube($youtube) {
+               $this->youtube = $youtube;
+
+               return $this;
+       }
 
 	/**
 	 * Get twitch
 	 *
 	 * @return string
 	 */
-	public function getTwitch() {
-		return $this->twitch;
-	}
+        public function getTwitch() {
+                return $this->twitch;
+        }
+
+       /**
+        * Get youtube
+        *
+        * @return string
+        */
+       public function getYoutube() {
+               return $this->youtube;
+       }
 
 	/**
 	 * Set max schedules

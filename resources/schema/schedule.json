@@ -35,6 +35,9 @@
                 "twitch": {
                     "type": ["string", "null"]
                 },
+                "youtube": {
+                    "type": ["string", "null"]
+                },
                 "theme": {
                     "type": ["string", "null"]
                 },
