@@ -30,8 +30,9 @@ class EventValidator extends BaseValidator {
 		$this->setFilteredValue('slug',    $this->validateSlug($event['slug'], $ref));
 		$this->setFilteredValue('website', $this->validateWebsite($event['website'], $ref));
 		$this->setFilteredValue('twitter', $this->validateTwitterAccount($event['twitter'], $ref));
-		$this->setFilteredValue('twitch',  $this->validateTwitchAccount($event['twitch'], $ref));
-		$this->setFilteredValue('theme',   $this->validateTheme($event['theme'], $ref));
+               $this->setFilteredValue('twitch',  $this->validateTwitchAccount($event['twitch'], $ref));
+               $this->setFilteredValue('youtube', $this->validateYoutubeURL($event['youtube'] ?? '', $ref));
+               $this->setFilteredValue('theme',   $this->validateTheme($event['theme'], $ref));
 		$this->setFilteredValue('secret',  $this->validateSecret($event['secret']));
 
 		return $this->result;
@@ -115,15 +116,31 @@ class EventValidator extends BaseValidator {
 		return $account === '' ? null : $account;
 	}
 
-	public function validateTwitchAccount($account, Event $ref = null) {
-		$account = trim($account);
+        public function validateTwitchAccount($account, Event $ref = null) {
+                $account = trim($account);
 
-		if (mb_strlen($account) > 0 && !preg_match('/^[a-zA-Z0-9_-]+$/', $account)) {
-			$this->addError('twitch', 'The Twitch account name contains invalid characters.');
-		}
+                if (mb_strlen($account) > 0 && !preg_match('/^[a-zA-Z0-9_-]+$/', $account)) {
+                        $this->addError('twitch', 'The Twitch account name contains invalid characters.');
+                }
 
-		return $account === '' ? null : $account;
-	}
+                return $account === '' ? null : $account;
+        }
+
+       public function validateYoutubeURL($url, Event $ref = null) {
+               $url = trim($url);
+
+               if (mb_strlen($url) > 0) {
+                       $parts = parse_url($url);
+
+                       if (!isset($parts['scheme']) || !in_array($parts['scheme'], ['http', 'https'], true)) {
+                               $this->addError('youtube', 'The YouTube URL must use HTTP or HTTPS.');
+                       } elseif (!isset($parts['host']) || !preg_match('/(^|\.)youtube\.com$|(^|\.)youtu\.be$/', $parts['host'])) {
+                               $this->addError('youtube', 'Only youtube.com or youtu.be domains are allowed.');
+                       }
+               }
+
+               return $url === '' ? null : $url;
+       }
 
 	public function validateTheme($theme, Event $event = null) {
 		$theme = trim($theme);

@@ -75,10 +75,11 @@ class EventController extends BaseController {
 		$event
 			->setName($result['name']['filtered'])
 			->setSlug($result['slug']['filtered'])
-			->setWebsite($result['website']['filtered'])
-			->setTwitter($result['twitter']['filtered'])
-			->setTwitch($result['twitch']['filtered'])
-			->setTheme($result['theme']['filtered'])
+                        ->setWebsite($result['website']['filtered'])
+                        ->setTwitter($result['twitter']['filtered'])
+                        ->setTwitch($result['twitch']['filtered'])
+                       ->setYoutube($result['youtube']['filtered'])
+                        ->setTheme($result['theme']['filtered'])
 			->setSecret($result['secret']['filtered'])
 			->setMaxSchedules($result['max_schedules']['filtered'])
 		;
